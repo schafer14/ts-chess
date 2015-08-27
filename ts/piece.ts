@@ -20,11 +20,11 @@ class Piece {
 		return '';
 	};
 
-	move(square: config.Square) {
-		return false;
+	move(square: Square): void {
+		this.square = square;
 	};
 
-	del() {
+	del(): void {
 		delete this;
 	};
 }

@@ -27,6 +27,10 @@ class Square {
 		return this._piece;
     }
 
+    removePiece(): void {
+		this._piece = null;
+    };
+
 	placePiece(piece:Piece) {
 		if (this._piece) {
 			this._piece.del();

@@ -82,10 +82,22 @@ class Game {
 				// process.stdout.write(('0' + position.toString()).slice(-2) + ' ');
 				if (square.piece && square.piece.unicodeChar) {
 					process.stdout.write(square.piece.unicodeChar + ' ');
+				} else {
+					process.stdout.write('  ');
 				}
 			}
 			process.stdout.write('\n');
 		}
+	};
+
+	move(from:number, to:number): void {
+		var toSquare: Square = this.squares[to];
+		var fromSquare: Square = this.squares[from];
+		var piece: Piece = fromSquare.piece;
+
+		piece.move(toSquare);
+		fromSquare.removePiece();
+		toSquare.placePiece(piece);
 	};
 }
 

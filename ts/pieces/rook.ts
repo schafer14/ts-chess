@@ -10,10 +10,6 @@ class Rook extends Piece {
 	get unicodeChar(): string {
 		return this.color === config.Color['1'] ? String.fromCharCode(0x2656) : String.fromCharCode(0x265C);
 	}
-
-	move(square: config.Square) {
-		return true;
-	};
 }
 
 export = Rook;
