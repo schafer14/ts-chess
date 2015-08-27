@@ -4,5 +4,5 @@ import Game = require('./game');
 
 var game = new Game();
 
-game.move(11, 27);
+game.move(1, 18);
 game.log()

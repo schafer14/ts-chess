@@ -7,14 +7,14 @@ var lettersMap = [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' ];
 class Square {
 	private _piece: Piece;
 	private _name: string;
-	private col: number;
-	private row: number;
+	private _col: number;
+	private _row: number;
 	private id: number;
 
 	constructor(id: number) {
 		this.id = id;
-		this.col = id % 8;
-		this.row = Math.floor(id / 8);
+		this._col = id % 8;
+		this._row = Math.floor(id / 8);
 		this._name = lettersMap[this.col] + (this.row + 1);
 		this._piece = null;
 	};
@@ -26,6 +26,14 @@ class Square {
     get piece(): Piece {
 		return this._piece;
     }
+
+    get col(): number {
+		return this._col;
+    };
+
+    get row(): number {
+		return this._row;
+    };
 
     removePiece(): void {
 		this._piece = null;

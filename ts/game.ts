@@ -68,7 +68,7 @@ class Game {
 		this.logToConsole();
 	};
 
-	logToConsole(): void {
+	private logToConsole(): void {
 		var i:number,
 			j:number,
 			position:number,
@@ -90,14 +90,30 @@ class Game {
 		}
 	};
 
-	move(from:number, to:number): void {
+	move(from:number, to:number): boolean {
 		var toSquare: Square = this.squares[to];
 		var fromSquare: Square = this.squares[from];
 		var piece: Piece = fromSquare.piece;
 
-		piece.move(toSquare);
-		fromSquare.removePiece();
-		toSquare.placePiece(piece);
+		// Not the same square
+		// All squares exist
+		// Not moving onto own piece
+		// Check it is the correct players turn
+		
+		var isLegalMove: (squares: Array<Square>) => boolean = piece.legalMove(toSquare);
+		
+		if (isLegalMove(this.squares)) {
+			piece.move(toSquare);
+			fromSquare.removePiece();
+			toSquare.placePiece(piece);
+
+			// Increment turn
+
+			return true;
+		} else {
+			return false;
+		}
+
 	};
 }
 
