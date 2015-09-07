@@ -14,6 +14,7 @@ import Pawn = require('./pieces/pawn');
 import Piece = require('./piece');
 import Square = require('./square');
 
+// config in static class
 var init:string = '' 
 	+ '03000110022004300540025001600370'
 	+ '00010011002100310041005100610071'
@@ -99,7 +100,7 @@ class Game {
 		// All squares exist
 		// Not moving onto own piece
 		// Check it is the correct players turn
-		
+
 		var isLegalMove: (squares: Array<Square>) => boolean = piece.legalMove(toSquare);
 		
 		if (isLegalMove(this.squares)) {
@@ -108,6 +109,7 @@ class Game {
 			toSquare.placePiece(piece);
 
 			// Increment turn
+			// Set en passent
 
 			return true;
 		} else {
