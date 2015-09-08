@@ -22,6 +22,7 @@ class Piece {
 
 	move(square: Square): void {
 		this.square = square;
+		square.placePiece(this);
 	};
 
 	legalMove(square: Square): (squares: Array<Square>) => boolean {

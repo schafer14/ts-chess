@@ -33,9 +33,9 @@ gulp.task('mochaTest', function() {
 gulp.task('istanbul', function (cb) {
 	gulp.src(['js/**/*.js'])
 		.pipe(istanbul({ includeUntested: true }))
-		// .pipe(istanbul.hookRequire())
+		.pipe(istanbul.hookRequire())
 		.on('finish', function () {
-			gulp.src(['./tests/*.js'])
+			gulp.src(['./tests/**/*.js'])
 				.pipe(mocha())
 				.pipe(istanbul.writeReports())
 				.on('end', cb);

@@ -12,6 +12,10 @@ class Square {
 	private id: number;
 
 	constructor(id: number) {
+		if (!id) {
+			throw new Error('Invalid index');
+		}
+		
 		this.id = id;
 		this._col = id % 8;
 		this._row = Math.floor(id / 8);
@@ -48,7 +52,25 @@ class Square {
 	};
 
 	static squareToNumber(squareRepersentation:string):number {
-		return 0;
+		squareRepersentation = squareRepersentation.toLowerCase();
+
+		if (squareRepersentation.length !== 2) {
+			throw new Error('Invalid input: expecting two characters (eg. \'e4\')');
+		}
+
+		if (isNaN(parseInt(squareRepersentation[1], 10))) {
+			throw new Error('Invalid input: expecting board square as input (eg. \'e4\'');
+		}
+
+		if (squareRepersentation[1] === '0' || squareRepersentation[1] === '9') {
+			throw new Error('Invalid number: expecting number between 1 and 8');
+		}
+
+		if (lettersMap.indexOf(squareRepersentation[0]) === -1) {
+			throw new Error('Invalid letter: expecting letter to match [A-Ha-h]');
+		}
+
+		return (8 * (parseInt(squareRepersentation[1], 10) - 1)) + lettersMap.indexOf(squareRepersentation[0]);
 	};
 };
 
