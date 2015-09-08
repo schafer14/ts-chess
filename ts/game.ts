@@ -122,13 +122,12 @@ class Game {
 
 	};
 
-	parseMove(string:string): Array<Square> {
+	static parseMove(string:string): Array<Number> {
 		var delimiters:	RegExp = /[,\s\t\nx]/;
 
 		var parts: Array<string> = string.split(delimiters);
 		
-
-		return [];
+		return [Square.squareToNumber(parts[0]), Square.squareToNumber(parts[1])];
 	};
 }
 

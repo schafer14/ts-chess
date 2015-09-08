@@ -12,7 +12,7 @@ class Square {
 	private id: number;
 
 	constructor(id: number) {
-		if (!id) {
+		if (typeof id === 'undefined') {
 			throw new Error('Invalid index');
 		}
 		
