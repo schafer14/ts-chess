@@ -18,9 +18,11 @@ class Rook extends Piece {
 				var max: number = Math.max(square.row, this.square.row);
 				var min: number = Math.min(square.row, this.square.row);
 				
-				return squares.filter(function(square) {
-					return square.row > min && square.row < max && square.piece;
-				}).length === 0;
+				var blockedSquares = squares.filter(function(square) {
+					return square.row > min && square.row < max && (square.piece !== null);
+				});
+
+				return blockedSquares.length === 0;
 			};
 		}
 
@@ -30,7 +32,7 @@ class Rook extends Piece {
 				var min: number = Math.min(square.col, this.square.col);
 				
 				return squares.filter(function(square) {
-					return square.col > min && square.col < max && square.piece;
+					return square.col > min && square.col < max && (square.piece !== null);
 				}).length === 0;
 			};
 		}

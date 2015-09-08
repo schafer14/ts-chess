@@ -46,6 +46,10 @@ class Square {
 
 		this._piece = piece;
 	};
+
+	static squareToNumber(squareRepersentation:string):number {
+		return 0;
+	};
 };
 
 export = Square;

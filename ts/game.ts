@@ -76,6 +76,8 @@ class Game {
 			square:Square;
 
 		for (i = 0; i < 8; i ++) {
+			process.stdout.write( (8 - i) + ' | ');
+
 			for (j = 0; j < 8; j ++) {
 				position = ((7 - i) * 8 + j);
 				square = this.squares[position];
@@ -89,6 +91,8 @@ class Game {
 			}
 			process.stdout.write('\n');
 		}
+
+		process.stdout.write('    ----------------\n    a b c d e f g h \n');
 	};
 
 	move(from:number, to:number): boolean {
@@ -116,6 +120,15 @@ class Game {
 			return false;
 		}
 
+	};
+
+	parseMove(string:string): Array<Square> {
+		var delimiters:	RegExp = /[,\s\t\nx]/;
+
+		var parts: Array<string> = string.split(delimiters);
+		
+
+		return [];
 	};
 }
 
