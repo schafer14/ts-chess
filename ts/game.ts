@@ -95,10 +95,32 @@ class Game {
 		process.stdout.write('    ----------------\n    a b c d e f g h \n');
 	};
 
-	move(from:number, to:number): boolean {
-		var toSquare: Square = this.squares[to];
-		var fromSquare: Square = this.squares[from];
+	move(squares: Array<number>): boolean {
+		if (!(squares instanceof Array)) {
+			throw new Error('Invalid input: move takes an array of two numbers');
+		}
+
+		if (squares.length !== 2) {
+			throw new Error('Invalid input: move takes an array of two numbers');
+		}
+
+		if (squares[0] > 63 || squares[0] < 0 || squares[1] > 63 || squares[1] < 0) {
+			throw new Error('Invalid input: square out of bounds');
+		}
+
+		if (squares[0] === squares[1]) {
+			throw new Error('Invalid input: cannot move to the same square');
+		}
+		
+		var toSquare: Square = this.squares[squares[1]];
+		var fromSquare: Square = this.squares[squares[0]];
+
+		if (!fromSquare.piece) {
+			throw new Error('Invalid input: no piece found on square');
+		}
+
 		var piece: Piece = fromSquare.piece;
+
 
 		// Not the same square
 		// All squares exist
@@ -122,10 +144,18 @@ class Game {
 
 	};
 
-	static parseMove(string:string): Array<Number> {
+	static parseMove(str:string): Array<Number> {
+		if (typeof str !== 'string') {
+			throw new Error('parseMove takes a string');
+		}
+
 		var delimiters:	RegExp = /[,\s\t\nx]/;
 
-		var parts: Array<string> = string.split(delimiters);
+		var parts: Array<string> = str.split(delimiters);
+
+		if (parts.length !== 2) {
+			throw new Error('invalid input: parseMove takes exactly two squares');
+		}
 		
 		return [Square.squareToNumber(parts[0]), Square.squareToNumber(parts[1])];
 	};
